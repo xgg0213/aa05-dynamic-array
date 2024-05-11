@@ -44,15 +44,19 @@ class DynamicArray {
     // shift() 3rd time => return 5, with this.length = 0 // 2
 
     if (this.length >=1) {
-      this.length --; // 3 => 2 [1,2,5]
-      return this.data[] // => 3
+      let res = this.data[0];
+      for (let i = 0; i < this.length; i++) {
+        this.data[i] = this.data[i+1]; 
+      }
+      this.length --;
+      return res;
     }
     else {
       this.length = 0;
       return undefined;
     }
 
-    
+
 
   }
 
@@ -84,18 +88,13 @@ class DynamicArray {
 module.exports = DynamicArray;
 
 
-dynamicArr = new DynamicArray(8);
-dynamicArr.push(1);
-dynamicArr.push(2);
-dynamicArr.push(3);
+// dynamicArr = new DynamicArray(8);
+// dynamicArr.push(1);
+// dynamicArr.push(2);
+// dynamicArr.push(3);
 
-console.log(dynamicArr.length);
-console.log(dynamicArr.data)
-console.log(dynamicArr.pop());
-console.log(dynamicArr.length);
-console.log(dynamicArr.pop());
-console.log(dynamicArr.length);
-console.log(dynamicArr.pop());
-console.log(dynamicArr.length);
-console.log(dynamicArr.data);
+// console.log(dynamicArr.length);
+// console.log(dynamicArr.data)n
+
+
 
