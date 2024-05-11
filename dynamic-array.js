@@ -16,8 +16,11 @@ class DynamicArray {
   push(val) {
 
     // Your code here
+    if (this.length === this.capacity) this.resize();
+
     this.data[this.length] = val;
     this.length ++;
+    
     
   }
 
@@ -65,12 +68,14 @@ class DynamicArray {
   unshift(val) {
 
     // Your code here 
+    if (this.length === this.capacity) this.resize();
     
     for (let i = this.length; i > 0; i--) {
       this.data[i] = this.data[i-1];
     }
     this.length ++;
     this.data[0] = val;
+
 
   }
 
@@ -86,6 +91,15 @@ class DynamicArray {
   resize() {
 
     // Your code here 
+    this.capacity *= 2;
+    // option 1: using concat
+    // this.data = this.data.concat(new Array(this.capacity/2))
+    // option 2: create a new array with current capacity & use that copy to create a replica of the current instance
+    let newArr = new Array(this.capacity);
+    for (let i = 0 ; i < this.length; i++) {
+      newArr[i] = this.data[i];
+    }
+    this.data = newArr;
 
   }
 
@@ -95,16 +109,33 @@ class DynamicArray {
 module.exports = DynamicArray;
 
 
-dynamicArr = new DynamicArray(8);
-dynamicArr.push(1);
-dynamicArr.push(2);
-dynamicArr.push(3);
-
+dynamicArr = new DynamicArray();
+console.log(dynamicArr.capacity);
 console.log(dynamicArr.length);
-console.log(dynamicArr.indexOf(1)) 
-console.log(dynamicArr.indexOf(2))
-console.log(dynamicArr.indexOf(3))
-console.log(dynamicArr.indexOf(4))
+console.log(dynamicArr.data);
+
+dynamicArr.push(10);
+dynamicArr.push(11);
+console.log(dynamicArr.length)
+
+dynamicArr.push(12);
+dynamicArr.push(13);
+console.log(dynamicArr.length);
+
+dynamicArr.resize();
+
+console.log(dynamicArr.capacity)//.to.equal(8);
+console.log(dynamicArr.data.length)//.to.equal(8);
+console.log(dynamicArr.length)//.to.equal(4);
+
+console.log(dynamicArr.read(0))//.to.equal(10);
+console.log(dynamicArr.read(1))//.to.equal(11);
+console.log(dynamicArr.read(2))//.to.equal(12);
+console.log(dynamicArr.read(3))//.to.equal(13);
+console.log(dynamicArr.read(4))//.to.equal(undefined);
+console.log(dynamicArr.data)//.to.equal(undefined);
+
+
 
 
 
