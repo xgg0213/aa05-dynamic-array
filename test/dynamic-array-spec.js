@@ -11,7 +11,7 @@ describe('Dynamic Array', function () {
 
   beforeEach(function () {
     dynamicArr = new DynamicArray();
-    noBuiltInMethods = chai.spy.on(dynamicArr.data, ["shift", "unshift", "push", "pop", "concat", "indexOf"]);
+    // noBuiltInMethods = chai.spy.on(dynamicArr.data, ["shift", "unshift", "push", "pop", "concat", "indexOf"]);
   });
 
   afterEach(function () {

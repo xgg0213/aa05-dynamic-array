@@ -47,6 +47,8 @@ class DynamicArray {
       let res = this.data[0];
       for (let i = 0; i < this.length; i++) {
         this.data[i] = this.data[i+1]; 
+        // console.log(this.data); can use this to check if the array is being mutated correctly
+        // need to comment out line 14 in test spec to not having the functions added to the array
       }
       this.length --;
       return res;
@@ -75,11 +77,16 @@ class DynamicArray {
   indexOf(val) {
 
     // Your code here 
+      for (let i = 0; i < this.length; i++) {
+        if (this.data[i] === val) return i;
+      }
+    return -1;
   }
 
   resize() {
 
     // Your code here 
+
   }
 
 }
@@ -88,13 +95,16 @@ class DynamicArray {
 module.exports = DynamicArray;
 
 
-// dynamicArr = new DynamicArray(8);
-// dynamicArr.push(1);
-// dynamicArr.push(2);
-// dynamicArr.push(3);
+dynamicArr = new DynamicArray(8);
+dynamicArr.push(1);
+dynamicArr.push(2);
+dynamicArr.push(3);
 
-// console.log(dynamicArr.length);
-// console.log(dynamicArr.data)n
+console.log(dynamicArr.length);
+console.log(dynamicArr.indexOf(1)) 
+console.log(dynamicArr.indexOf(2))
+console.log(dynamicArr.indexOf(3))
+console.log(dynamicArr.indexOf(4))
 
 
 
